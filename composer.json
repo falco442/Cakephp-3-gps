@@ -1,5 +1,5 @@
 {
-    "name": "falco442/cakephp-3-gps",
+    "name": "falco442/gps",
     "description": "Gps plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
