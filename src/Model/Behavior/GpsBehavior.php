@@ -49,5 +49,6 @@ class GpsBehavior extends Behavior{
         extract($this->config());
         $return[] = $coordinate - $choosenRadius / $radius;
         $return[] = $coordinate + $choosenRadius / $radius;
+        return $return;
     }
 }
