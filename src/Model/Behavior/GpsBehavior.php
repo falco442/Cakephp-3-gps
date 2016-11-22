@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Behavior;
+namespace Gps\Model\Behavior;
 
 use Cake\ORM\Behavior;
 use Cake\ORM\Query;
