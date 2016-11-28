@@ -62,7 +62,7 @@ in `src/Controller/YourModelController`, for example, in a `nearBy` action, you 
 
 ```PHP
 public function nearBy(){
-	$yourmodel = $this->YourModel->find('near',$this->request->query);
+	$yourmodel = $this->YourModel->find('near',['gps'=>$this->request->query]);
 	$this->set(compact('yourmodel'));
 	$this->set('_serialize',['yourmodel']);
 }

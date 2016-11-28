@@ -44,9 +44,6 @@ class GpsBehavior extends Behavior{
             $query->where([$fields['latitude'].' IS NOT'=>null]);
             $query->where([$fields['longitude'].' IS NOT'=>null]);
         }
-        unset($options['gps']['radius']);
-        unset($options['gps']['latitude']);
-        unset($options['gps']['longitude']);
 
 		return $query;
 	}
