@@ -21,19 +21,19 @@ class GpsBehavior extends Behavior{
     ];
 
 	public function findNear(Query $query, array $options){
-        if(isset($options['latitude']) && isset($options['longitude']) && isset($options['radius'])){
+        if(isset($options['gps']['latitude']) && isset($options['gps']['longitude']) && isset($options['gps']['radius'])){
 
             $optionFields = ['latitude','longitude','radius'];
             foreach($optionFields as $fieldName){
-                if(!is_numeric($options[$fieldName])){
+                if(!is_numeric($options['gps'][$fieldName])){
                     throw new InvalidTypeException(__("Search field %s must be numeric"),$fieldName);
                 }
             }
 
             extract($this->config());
 
-            list($minLat,$maxLat) = $this->_getMinMax($options['latitude'],$options['radius']);
-            list($minLon,$maxLon) = $this->_getMinMax($options['longitude'],$options['radius']);
+            list($minLat,$maxLat) = $this->_getMinMax($options['gps']['latitude'],$options['gps']['radius']);
+            list($minLon,$maxLon) = $this->_getMinMax($options['gps']['longitude'],$options['gps']['radius']);
 
             $query->where(function ($exp, $q) use($fields,$minLat,$maxLat,$minLon,$maxLon) {
                 $exp->between($fields['latitude'], $minLat, $maxLat);
@@ -44,6 +44,9 @@ class GpsBehavior extends Behavior{
             $query->where([$fields['latitude'].' IS NOT'=>null]);
             $query->where([$fields['longitude'].' IS NOT'=>null]);
         }
+        unset($options['gps']['radius']);
+        unset($options['gps']['latitude']);
+        unset($options['gps']['longitude']);
 
 		return $query;
 	}
